@@ -17,4 +17,3 @@ You can click the Preview link to take a look at your changes.
 <image src="src.jpg"><br>
 #
 <b>Advertisement</b>
-<iframe src="https://paiza.io/projects/e/WidUpklRL894DpVt1mYOVw?theme=twilight" width="100%" height="500" scrolling="no" seamless="seamless"></iframe>
