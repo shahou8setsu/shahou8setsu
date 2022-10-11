@@ -11,6 +11,11 @@ on:
   pull_request:
     branches: [ master ]
 
+# Where you do the job
+env:
+  HOOK_URL: https://hooks.slack.com/services/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
+  REPO_NAME: python
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -25,10 +30,10 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Run a one-line script
-      run: echo Hello, world!
+      # run: git log --numstat -m -1 --date=iso --pretty='[%ad] %h %an : %s' > gitlog.txt
 
     # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
+    - name: Send Slack from gitlog when master is pushed
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        git log --numstat -m -1 --date=iso --pretty='[%ad] %h %an : %s' > gitlog.txt
+        curl -X POST --data-urlencode "payload={\"channel\": \"#python\", \"username\": \"webhookbot\", \"text\": \"これは webhookbot という名のボットから #python に投稿されています。\", \"icon_emoji\": \":ghost:\"}" https://hooks.slack.com/services/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
